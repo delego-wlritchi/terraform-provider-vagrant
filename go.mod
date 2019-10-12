@@ -43,3 +43,5 @@ require (
 	google.golang.org/genproto v0.0.0-20180808183934-383e8b2c3b9e // indirect
 	google.golang.org/grpc v1.14.0 // indirect
 )
+
+go 1.13

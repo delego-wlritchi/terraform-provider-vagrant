@@ -88,6 +88,12 @@ func resourceVagrantVM() *schema.Resource {
 							Computed:    true,
 						},
 
+						"private_key_file": {
+							Description: "Path to the private SSH key for the connection.",
+							Type:        schema.TypeString,
+							Computed:    true,
+						},
+
 						"agent": {
 							Description: "Whether or not to use the agent to authenticate.",
 							Type:        schema.TypeString,
@@ -294,6 +300,7 @@ func readVagrantInfo(ctx context.Context, client *vagrant.VagrantClient, d *sche
 		if privateKey, err := ioutil.ReadFile(config.IdentityFile); err == nil {
 			sshConfig["private_key"] = string(privateKey)
 		}
+		sshConfig["private_key_file"] = config.IdentityFile
 		sshConfig["agent"] = "false"
 		sshConfigs[i] = sshConfig
 		keys[i] = key
